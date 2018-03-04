@@ -1,0 +1,6 @@
+{
+	"extends": ["tslint:recommended", "tslint:latest"],
+	"rules": {
+		"no-unused-vars": true
+	}
+}

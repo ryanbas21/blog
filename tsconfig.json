@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "esnext",
+		"jsx": "react",
+		"sourceMap": false,
+		"experimentalDecorators": true,
+		"noImplicitUseStrict": true,
+		"removeComments": true,
+		"moduleResolution": "node",
+		"pretty": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"emitDecoratorMetadata": true,
+		"forceConsistentCasingInFileNames": false,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"importHelpers": true,
+		"baseUrl": "src",
+		"paths": {
+			"components/*": ["./components/*"],
+			"features/*": ["./features/*"],
+			"store/*": ["./store/*"],
+			"types/*": ["./types/*"],
+			"hoc/*": ["./hoc"]
+		},
+		"lib": ["es2017", "dom"],
+		"typeRoots": ["node_modules/@types", "src/@types"]
+	},
+	"exclude": [
+		"node_modules",
+		"out",
+		".next",
+		"./postcss.config.js",
+		"./next.config.js",
+		"./jest.config.js"
+	]
+}
