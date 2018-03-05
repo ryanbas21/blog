@@ -17,8 +17,8 @@ const enhancer = compose(
 		: (f: any) => f
 );
 
-export interface Store {}
-export default (initialState: Store) => {
+export interface RootState {}
+export default (initialState: RootState) => {
 	const store = createStore(rootReducer, initialState, enhancer);
 	return store;
 };
