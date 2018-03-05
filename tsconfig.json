@@ -11,7 +11,6 @@
 		"pretty": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedLocals": true,
-		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"emitDecoratorMetadata": true,
@@ -28,7 +27,7 @@
 			"hoc/*": ["./hoc"]
 		},
 		"lib": ["es2017", "dom"],
-		"typeRoots": ["node_modules/@types", "src/@types"]
+		"typeRoots": ["node_modules/@types", "src/types"]
 	},
 	"exclude": [
 		"node_modules",

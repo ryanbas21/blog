@@ -1,3 +1,4 @@
 import Blog from "./Blog";
+import Posts from "./Posts";
 
-export default { Blog };
+export { Blog, Posts };
