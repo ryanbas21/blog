@@ -1,24 +1,32 @@
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import { compose, createStore, applyMiddleware, combineReducers } from "redux";
+import Posts, {
+	Posts as PostState,
+	PostReducer
+} from "../features/Posts/posts.reducer";
+import { createEpicMiddleware } from "redux-observable";
+import rootEpic from "../root-epic";
 
-type Reducers = any;
-const rootReducer = combineReducers<Reducers>({});
+type Reducers = PostReducer;
+const rootReducer = combineReducers<Reducers>({ Posts });
 
 declare global {
 	interface Window {
-		devToolsExtension: any;
+		__REDUX_DEVTOOLS_EXTENSION__: () => any;
 	}
 }
+const epicMiddleware = createEpicMiddleware(rootEpic);
 
-const middleware: ((a: any) => any)[] = [];
 const enhancer = compose(
-	applyMiddleware(...middleware),
-	typeof window !== "undefined" && process.env.NODE_ENV !== "production"
-		? window.devToolsExtension && window.devToolsExtension()
-		: (f: any) => f
+	applyMiddleware(epicMiddleware),
+	process.env.NODE_ENV === "development" && typeof window !== "undefined"
+		? window.__REDUX_DEVTOOLS_EXTENSION__ &&
+		  window.__REDUX_DEVTOOLS_EXTENSION__()
+		: (f) => f
 );
 
-export interface RootState {}
+export interface RootState extends PostState {}
 export default (initialState: RootState) => {
 	const store = createStore(rootReducer, initialState, enhancer);
+
 	return store;
 };

@@ -1,7 +1,12 @@
-import { RootState } from "store";
-export interface Action {
-	type: string;
-	payload?: any;
+import { RootState } from 'store';
+import { POSTACTIONS, POSTTYPES } from '../features/Posts/posts.reducer';
+export interface Action<T, P> {
+	type: T;
+	payload?: P;
 }
-
-type Reducer = (state: RootState, action: Action) => RootState;
+type Actions = POSTACTIONS;
+type Types = POSTTYPES;
+export type Reducer<S, A> = (
+	state: RootState,
+	action: Action<Types, Actions>
+) => RootState;
