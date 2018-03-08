@@ -1,23 +1,22 @@
-import * as React from "react";
-import { Action } from "types/redux";
-import { connect, Dispatch } from "react-redux";
-import { RootState } from "store";
+import * as React from 'react';
+import { Action } from 'types/redux';
+import { Blog } from '../../components';
+import { connect, Dispatch } from 'react-redux';
+import { RootState } from 'store';
 import {
 	getPosts,
 	POSTACTIONS,
 	POSTTYPES,
 	GETPOSTS,
-	submitPost,
-	SUBMITPOST
-} from "./posts.reducer";
+	PostsData
+} from './posts.reducer';
 
 export interface POSTS {
 	getPosts: () => GETPOSTS;
-	submitPost: () => SUBMITPOST;
-	posts: { title: string }[];
+	posts: PostsData[];
 }
 export interface PostState {
-	posts?: { title: string }[];
+	posts?: PostsData[];
 }
 class PostsComponent extends React.Component<POSTS, PostState> {
 	constructor(props: POSTS) {
@@ -33,22 +32,24 @@ class PostsComponent extends React.Component<POSTS, PostState> {
 		return (
 			<React.Fragment>
 				<div> Posts Page </div>
+				{this.props.posts.map((post) => (
+					<Blog key={post.author.title} post={post} />
+				))}
 			</React.Fragment>
 		);
 	}
 }
 
-function mapStateToProps(state: RootState) {
+function mapStateToProps(state: RootState): { posts: any[] } {
 	return {
-		posts: state.posts
+		posts: state.Posts.posts
 	};
 }
 function mapDispatchToProps(
 	dispatch: Dispatch<Action<POSTTYPES, POSTACTIONS>>
 ) {
 	return {
-		getPosts: () => dispatch(getPosts()),
-		submitPost
+		getPosts: () => dispatch(getPosts())
 	};
 }
 const Posts = connect(mapStateToProps, mapDispatchToProps)(PostsComponent);

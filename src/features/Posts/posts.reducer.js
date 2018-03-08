@@ -1,3 +1,4 @@
+import { map, prop, pipe } from 'ramda';
 export const GET_POSTS = 'GET_POSTS';
 export function getPosts() {
 	return {
@@ -24,15 +25,17 @@ export function submitPost(post) {
 		payload: post
 	};
 }
+export const getPostTitles = (state) =>
+	map(pipe(prop('author'), prop('title')), state.posts);
 function initialState() {
 	return {
 		posts: []
 	};
 }
-const reducer = function(state = initialState(), action) {
+function reducer(state = initialState(), action) {
 	switch (action.type) {
 		case SUBMIT_POST: {
-			return {};
+			return state;
 		}
 		case GET_POSTS: {
 			return state;
@@ -46,5 +49,5 @@ const reducer = function(state = initialState(), action) {
 		default:
 			return state;
 	}
-};
+}
 export default reducer;

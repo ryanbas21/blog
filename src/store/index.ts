@@ -1,10 +1,10 @@
-import { compose, createStore, applyMiddleware, combineReducers } from "redux";
+import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
 import Posts, {
 	Posts as PostState,
 	PostReducer
-} from "../features/Posts/posts.reducer";
-import { createEpicMiddleware } from "redux-observable";
-import rootEpic from "../root-epic";
+} from '../features/Posts/posts.reducer';
+import { createEpicMiddleware } from 'redux-observable';
+import rootEpic from '../root-epic';
 
 type Reducers = PostReducer;
 const rootReducer = combineReducers<Reducers>({ Posts });
@@ -18,13 +18,15 @@ const epicMiddleware = createEpicMiddleware(rootEpic);
 
 const enhancer = compose(
 	applyMiddleware(epicMiddleware),
-	process.env.NODE_ENV === "development" && typeof window !== "undefined"
+	process.env.NODE_ENV === 'development' && typeof window !== 'undefined'
 		? window.__REDUX_DEVTOOLS_EXTENSION__ &&
 		  window.__REDUX_DEVTOOLS_EXTENSION__()
 		: (f) => f
 );
 
-export interface RootState extends PostState {}
+export interface RootState extends PostState {
+	Posts: PostState;
+}
 export default (initialState: RootState) => {
 	const store = createStore(rootReducer, initialState, enhancer);
 

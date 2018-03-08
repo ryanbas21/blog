@@ -11,9 +11,9 @@
 		"pretest": "npm run lint",
 		"lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
 		"test": "tsc && jest",
-		"start": "tsc && next start",
-		"build": "tsc && next build",
-		"dev": "tsc && next"
+		"start": "next start",
+		"build": "next build",
+		"dev": "next"
 	},
 	"author": "Ryan Bas",
 	"license": "MIT",

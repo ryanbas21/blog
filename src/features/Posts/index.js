@@ -1,6 +1,7 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { getPosts, submitPost } from "./posts.reducer";
+import * as React from 'react';
+import { Blog } from '../../components';
+import { connect } from 'react-redux';
+import { getPosts } from './posts.reducer';
 class PostsComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -15,19 +16,21 @@ class PostsComponent extends React.Component {
 		return React.createElement(
 			React.Fragment,
 			null,
-			React.createElement("div", null, " Posts Page ")
+			React.createElement('div', null, ' Posts Page '),
+			this.props.posts.map((post) =>
+				React.createElement(Blog, { key: post.author.title, post: post })
+			)
 		);
 	}
 }
 function mapStateToProps(state) {
 	return {
-		posts: state.posts
+		posts: state.Posts.posts
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return {
-		getPosts: () => dispatch(getPosts()),
-		submitPost
+		getPosts: () => dispatch(getPosts())
 	};
 }
 const Posts = connect(mapStateToProps, mapDispatchToProps)(PostsComponent);
