@@ -1,5 +1,5 @@
 import { SUBMITPOST } from './posts.reducer';
-import { Action, Reducer } from 'types/redux.d.ts';
+import { Action, Reducer } from 'types/redux';
 // import { createSelector } from 'reselect';
 import { RootState } from 'store';
 import { map, prop, pipe } from 'ramda';

@@ -1,6 +1,6 @@
 {
+	"compileOnSave": false,
 	"compilerOptions": {
-		"compileOnSave": false,
 		"target": "esnext",
 		"module": "esnext",
 		"jsx": "preserve",
@@ -13,13 +13,7 @@
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"skipLibCheck": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"emitDecoratorMetadata": true,
-		"forceConsistentCasingInFileNames": false,
-		"importHelpers": true,
-		"baseUrl": "src",
+		"baseUrl": "./src",
 		"paths": {
 			"components/*": ["./components/*"],
 			"features/*": ["./features/*"],
@@ -27,15 +21,8 @@
 			"types/*": ["./types/*"],
 			"hoc/*": ["./hoc"]
 		},
-		"lib": ["es2017", "dom"],
-		"typeRoots": ["node_modules/@types", "src/types"]
-	},
-	"exclude": [
-		"node_modules",
-		"out",
-		".next",
-		"./postcss.config.js",
-		"./next.config.js",
-		"./jest.config.js"
-	]
+		"typeRoots": ["./node_modules/@types"],
+		"lib": ["dom", "es2015", "es2016"],
+		"outDir": ".next/"
+	}
 }
