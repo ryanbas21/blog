@@ -1,3 +1,10 @@
 import * as React from 'react';
+import Posts from 'src/features/posts';
+import pageWrapper from 'hocs/pageWrapper';
 
-export default (props) => <div> Home </div>;
+class PostPage extends React.Component {
+	render() {
+		return <Posts />;
+	}
+}
+export default pageWrapper(PostPage);

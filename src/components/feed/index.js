@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { Feed } from 'semantic-ui-react';
+import Link from 'next/link';
 
-const defaultImage = '../../../static/default.png';
 const Blog = (props) => (
 	<Feed
 		style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 		size={'large'}>
 		<Feed.Event>
 			<Feed.Label>
-				<img src={props.post.img || defaultImage} />
+				<img src={props.post.img || '/static/default.png'} />
 			</Feed.Label>
 			<Feed.Content style={{ width: 'auto' }}>
 				<Feed.Summary>
-					<a href={props.post.url}>{props.post.title}</a>
+					<Link prefetch href={`blog?id=${props.post.id}`} passHref>
+						<a>{props.post.title}</a>
+					</Link>
 				</Feed.Summary>
 				<Feed.Extra
 					style={{

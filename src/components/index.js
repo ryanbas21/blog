@@ -1,4 +1,4 @@
-import Blog from './blog';
+import Feed from './feed';
 import Head from './head';
 
-export { Blog, Head };
+export { Feed, Head };
