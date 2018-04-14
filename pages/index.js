@@ -1,2 +1,3 @@
-import * as React from "react";
-export default (props) => React.createElement("div", null, " Home ");
+import * as React from 'react';
+
+export default (props) => <div> Home </div>;

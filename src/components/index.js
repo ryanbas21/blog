@@ -1,2 +1,4 @@
 import Blog from './blog';
-export { Blog };
+import Head from './head';
+
+export { Blog, Head };

@@ -1,3 +1,3 @@
-import Blog from "./Blog";
-import Posts from "./Posts";
-export { Blog, Posts };
+import Posts from './posts';
+
+export { Posts };
