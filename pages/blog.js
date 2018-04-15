@@ -1,7 +1,11 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
+import Router from 'next/router';
 import pageWrapper from 'hocs/pageWrapper';
 import { Loader, Dimmer } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+import { postsSelector } from 'features/posts/posts.reducer';
 
 const Post = dynamic(import('components/post'), {
 	loading: () => (
@@ -11,6 +15,35 @@ const Post = dynamic(import('components/post'), {
 	)
 });
 
-const BlogPost = (props) => <Post />;
+class BlogPost extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			postId: null
+		};
+	}
+	componentDidMount() {
+		if (window) {
+			this.setState({ postId: Router.query.id });
+		}
+	}
+	render() {
+		return <Post postId={this.state.postId} />;
+	}
+}
 
-export default pageWrapper(BlogPost);
+function mapStateToProps(state) {
+	return {
+		posts: postsSelector(state)
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		getPosts: () => dispatch(getPosts())
+	};
+}
+const BlogPostConnected = connect(mapStateToProps, mapDispatchToProps)(
+	BlogPost
+);
+export default pageWrapper(BlogPostConnected);

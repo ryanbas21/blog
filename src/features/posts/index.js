@@ -1,14 +1,16 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
+import Router from 'next/router';
 import { Container, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { getPosts, GETPOSTS, PostsData } from './posts.reducer';
-import { createSelector } from 'reselect';
-import { prop } from 'ramda';
+import {
+	getPosts,
+	GETPOSTS,
+	PostsData,
+	currentPost,
+	postsSelector
+} from './posts.reducer';
+import Feed from 'components/feed';
 
-const Feed = dynamic(import('components/feed'), {
-	loading: Loader
-});
 class PostsComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,6 +20,7 @@ class PostsComponent extends React.Component {
 	}
 	componentDidMount() {
 		this.props.getPosts();
+		console.log(this.props);
 	}
 	render() {
 		return (
@@ -27,13 +30,6 @@ class PostsComponent extends React.Component {
 		);
 	}
 }
-
-const postsSelector = createSelector(
-	(state) => prop('posts', state.Posts),
-	(posts) => {
-		return posts;
-	}
-);
 
 function mapStateToProps(state) {
 	return {
