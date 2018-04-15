@@ -1,0 +1,23 @@
+{
+	"plugins": ["transform-runtime",   [
+		"module-resolver", {
+			"root": ["./"],
+			"alias": {
+				"components": "./src/components",
+				"features": "./src/features",
+				"hocs": "./src/hocs",
+				"store": "./src/store",
+				"static": "./static",
+				"pages": "./pages"
+			}
+		}
+	]],
+	"presets": [
+		"es2015",
+		"next/babel",
+	  "es2016",
+	  "stage-2",
+	  "stage-0",
+	  "react"
+	]
+  }
