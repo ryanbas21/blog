@@ -12,7 +12,7 @@ const Blog = (props) => (
 			</Feed.Label>
 			<Feed.Content style={{ width: 'auto' }}>
 				<Feed.Summary>
-					<Link prefetch href={`blog?id=${props.post.id}`} passHref>
+					<Link href={`blog?id=${props.post.id}`} passHref>
 						<a>{props.post.title}</a>
 					</Link>
 				</Feed.Summary>

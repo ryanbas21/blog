@@ -1,4 +1,5 @@
 import { map, prop, pipe } from 'ramda';
+import { createSelector } from 'reselect';
 
 export const GET_POSTS = 'GET_POSTS';
 export function getPosts() {
@@ -34,6 +35,14 @@ function initialState() {
 		posts: []
 	};
 }
+
+export const postsSelector = createSelector(
+	(state) => prop('posts', state.Posts),
+	(posts) => {
+		return posts;
+	}
+);
+
 function reducer(state = initialState(), action) {
 	switch (action.type) {
 		case SUBMIT_POST: {
