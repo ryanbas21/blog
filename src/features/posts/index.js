@@ -18,14 +18,11 @@ class PostsComponent extends React.Component {
 			posts: []
 		};
 	}
-	componentDidMount() {
-		this.props.getPosts();
-		console.log(this.props);
-	}
+	componentDidMount() {}
 	render() {
 		return (
 			<Container textAlign={'center'}>
-				{this.props.posts.map((post) => <Feed key={post.title} post={post} />)}
+				{/* {this.props.posts.map((post) => <Feed key={post.title} post={post} />)} */}
 			</Container>
 		);
 	}
