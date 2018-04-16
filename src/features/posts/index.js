@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Router from 'next/router';
-import { Container, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Container, Loader } from 'semantic-ui-react';
 import {
 	getPosts,
 	GETPOSTS,

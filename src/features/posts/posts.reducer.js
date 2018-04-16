@@ -63,7 +63,7 @@ function initialState() {
 		posts: []
 	};
 }
-function reducer(state = initialState(), action) {
+export default function reducer(state = initialState(), action) {
 	switch (action.type) {
 		case SUBMIT_POST: {
 			return state;
@@ -87,4 +87,3 @@ function reducer(state = initialState(), action) {
 			return state;
 	}
 }
-export default reducer;

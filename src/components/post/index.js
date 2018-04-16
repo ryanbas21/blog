@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import pageWrapper from 'hocs/pageWrapper';
 import { getCurrentPost } from 'features/posts/posts.reducer';
 
-const BlogPost = (props) => (
-	<div>
-		{console.log(props)}
-		Hello
-	</div>
-);
+const BlogPost = (props) => <div>Hello</div>;
 
 function mapStateToProps(state) {
 	return getCurrentPost(state);
