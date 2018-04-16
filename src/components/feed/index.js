@@ -7,15 +7,13 @@ const Blog = (props) => (
 		style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 		size={'large'}>
 		<Feed.Event>
-			{console.log(props)}
 			<Feed.Label>
 				<img src={props.post.img || '/static/default.png'} />
 			</Feed.Label>
 			<Feed.Content style={{ width: 'auto' }}>
 				<Feed.Summary>
-					<Link href={`blog?id=${props.post.id}`} passHref>
-						<a>{props.post.title}</a>
-					</Link>
+					<a>{props.post.title}</a>
+					{/* </Link> */}
 				</Feed.Summary>
 				<Feed.Extra
 					style={{
