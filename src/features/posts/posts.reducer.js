@@ -39,6 +39,7 @@ function initialState() {
 export const postsSelector = createSelector(
 	(state) => prop('posts', state.Posts),
 	(posts) => {
+		console.log('selector', posts);
 		return posts;
 	}
 );

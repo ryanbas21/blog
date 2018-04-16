@@ -1,27 +1,28 @@
 import * as React from 'react';
 import Posts from 'src/features/posts';
-import pageWrapper from 'hocs/pageWrapper';
+import store from 'src/store';
+import Head from 'components/head';
+import { compose } from 'ramda';
+import withRedux from 'next-redux-wrapper';
+import rootEpic from 'src/root-epic';
+import { of } from 'rxjs/observable/of';
+import { getPosts } from 'src/features/posts/posts.reducer';
 
 class PostPage extends React.Component {
-	constructor() {
-		super();
-		this.state = {};
-	}
-	static async getInitialProps({ req, res, locals }) {
-		const isServer = !!req;
-
-		console.log('getInitialProps called:', isServer ? 'server' : 'client');
-
-		if (isServer) {
-			// When being rendered server-side, we have access to our data in query that we put there in routes/item.js,
-			// saving us an http call. Note that if we were to try to require('../operations/get-item') here,
-			// it would result in a webpack error.
-			return { item: locals };
-		}
+	static async getInitialProps(ctx) {
+		const resultAction = await rootEpic(of(getPosts()), ctx.store).toPromise();
+		ctx.store.dispatch(resultAction);
 	}
 	render() {
-		console.log('props', this.props);
-		return <Posts />;
+		const { posts } = this.props;
+		console.log(posts);
+		return (
+			<React.Fragment>
+				<Head />
+				<Posts posts={posts} />
+			</React.Fragment>
+		);
 	}
 }
-export default pageWrapper(PostPage);
+
+export default compose(withRedux(store))(PostPage);

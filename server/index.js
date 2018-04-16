@@ -16,9 +16,7 @@ app.prepare().then(() => {
 	const server = express();
 	server.use(bodyParser.json());
 
-	server.get('/', gatherPosts, (route, req, res) => {
-		return app.render(req, res, '/', { query: req.query, locals: res.locals });
-	});
+	server.get('/', (req, res) => app.render(req, res, '/'));
 
 	server.get('/b', appRender('/b'));
 
