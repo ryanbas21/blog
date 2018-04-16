@@ -7,6 +7,7 @@ const Blog = (props) => (
 		style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 		size={'large'}>
 		<Feed.Event>
+			{console.log(props)}
 			<Feed.Label>
 				<img src={props.post.img || '/static/default.png'} />
 			</Feed.Label>

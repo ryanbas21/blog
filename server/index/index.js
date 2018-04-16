@@ -1,15 +1,17 @@
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mergeMap';
-import { curry, prop, map } from 'ramda';
+const { curry, prop, map } = require('ramda');
+const { encaseP, encase, tryP } = require('fluture');
+const axios = require('axios');
 
-const addDataToResponse = curry((req, res, next, data) => {
-	res.data = data;
-	return res;
+const gatherPosts = curry(function(req, res, next) {
+	return apiCall.fork(console.error, right(res, next));
 });
 
-export function gatherPosts(req, res, next) {
-	return Observable.fromPromise(
-		axios.get('https://jsonplaceholder.typicode.com/posts')
-	).pipe(map(prop('data')), map(addDataToResponse(req, res, next)));
-}
+module.exports = gatherPosts;
+
+const right = curry((res, next, data) => {
+	res.locals.posts = data;
+	next();
+});
+const apiCall = encaseP(axios.get)(
+	'https://jsonplaceholder.typicode.com/posts'
+).map(prop('data'));

@@ -4,14 +4,21 @@ const dev = process.env.NODE_ENV !== 'production';
 const next = require('next');
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const appRender = require('./utils');
+const bodyParser = require('body-parser');
+const { curry } = require('ramda');
+const gatherPosts = require('./index/index');
+
+const appRender = curry((route, req, res) => {
+	return app.render(req, res, route, req.query);
+});
 
 app.prepare().then(() => {
 	const server = express();
+	server.use(bodyParser.json());
 
-	server.get('/', appRender(app));
+	server.get('/', (req, res) => app.render(req, res, '/'));
 
-	server.get('/b', appRender(app));
+	server.get('/b', appRender('/b'));
 
 	server.get('*', (req, res) => handle(req, res));
 

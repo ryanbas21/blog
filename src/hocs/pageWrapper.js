@@ -1,6 +1,6 @@
 import React from 'react';
 import withRedux from 'next-redux-wrapper';
-import { compose } from 'ramda';
+import { compose, curry } from 'ramda';
 import Head from './head';
 import store from 'store';
 

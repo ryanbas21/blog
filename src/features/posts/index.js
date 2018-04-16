@@ -12,17 +12,8 @@ import {
 import Feed from 'components/feed';
 
 class PostsComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			posts: []
-		};
-	}
-	componentDidMount() {
-		this.props.getPosts();
-		console.log(this.props);
-	}
 	render() {
+		console.log('posts props', this.props.posts);
 		return (
 			<Container textAlign={'center'}>
 				{this.props.posts.map((post) => <Feed key={post.title} post={post} />)}
