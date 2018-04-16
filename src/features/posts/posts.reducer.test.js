@@ -1,10 +1,10 @@
-import test from 'tape';
 import reducer, {
 	getPosts,
 	submitPost,
 	getPostsSuccess,
 	loadingPosts
 } from './posts.reducer';
+import test from 'tape';
 
 test('Get Posts :: returns an action creator with getPosts type', (t) => {
 	let expected = {

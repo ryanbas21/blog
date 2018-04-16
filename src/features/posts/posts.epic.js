@@ -7,10 +7,10 @@ import { Observable } from 'rxjs/Observable';
 import { merge } from 'rxjs/observable/merge';
 import { GET_POSTS, getPostsSuccess, loadingPosts } from './posts.reducer';
 import { ofType } from 'redux-observable';
-import { prop, init } from 'ramda';
 import axios from 'axios';
+import { prop, init } from 'ramda';
 
-export const postEpic = (action$, state) => {
+const postEpic = (action$, state) => {
 	const intent$ = action$.pipe(
 		ofType(GET_POSTS),
 		mergeMap(() =>
@@ -26,3 +26,5 @@ export const postEpic = (action$, state) => {
 	const startLoading$ = intent$.mergeMap(() => Observable.of(loadingPosts()));
 	return merge(startLoading$, intent$);
 };
+
+export { postEpic };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Router from 'next/router';
-import { Container, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Container, Loader } from 'semantic-ui-react';
 import {
 	getPosts,
 	GETPOSTS,
@@ -12,11 +12,18 @@ import {
 import Feed from 'components/feed';
 
 class PostsComponent extends React.Component {
+	handlePost = (post) => {
+		this.props.currentPost(post);
+		Router.push({ pathname: `/blog`, query: { id: post.id } });
+	};
 	render() {
-		console.log('posts props', this.props.posts);
 		return (
 			<Container textAlign={'center'}>
-				{this.props.posts.map((post) => <Feed key={post.title} post={post} />)}
+				{this.props.posts.map((post) => (
+					<div key={post.title} onClick={() => this.handlePost(post)}>
+						<Feed post={post} />
+					</div>
+				))}
 			</Container>
 		);
 	}
@@ -29,7 +36,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
 	return {
-		getPosts: () => dispatch(getPosts())
+		getPosts: () => dispatch(getPosts()),
+		currentPost: (post) => dispatch(currentPost(post))
 	};
 }
 const Posts = connect(mapStateToProps, mapDispatchToProps)(PostsComponent);

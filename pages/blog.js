@@ -22,11 +22,6 @@ class BlogPost extends React.Component {
 			postId: null
 		};
 	}
-	componentDidMount() {
-		if (window) {
-			this.setState({ postId: Router.query.id });
-		}
-	}
 	render() {
 		return <Post postId={this.state.postId} />;
 	}

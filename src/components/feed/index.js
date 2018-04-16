@@ -2,20 +2,18 @@ import * as React from 'react';
 import { Feed } from 'semantic-ui-react';
 import Link from 'next/link';
 
-const Blog = (props) => (
+const Blog = ({ post }) => (
 	<Feed
 		style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
 		size={'large'}>
 		<Feed.Event>
-			{console.log(props)}
 			<Feed.Label>
-				<img src={props.post.img || '/static/default.png'} />
+				<img src={post.img || '/static/default.png'} />
 			</Feed.Label>
 			<Feed.Content style={{ width: 'auto' }}>
 				<Feed.Summary>
-					<Link href={`blog?id=${props.post.id}`} passHref>
-						<a>{props.post.title}</a>
-					</Link>
+					<a>{post.title}</a>
+					{/* </Link> */}
 				</Feed.Summary>
 				<Feed.Extra
 					style={{
@@ -23,7 +21,7 @@ const Blog = (props) => (
 						display: 'flex',
 						justifyContent: 'space-around'
 					}}>
-					{props.post.body.slice(0, 200)}...
+					{post.body.slice(0, 200)}...
 				</Feed.Extra>
 			</Feed.Content>
 		</Feed.Event>

@@ -7,12 +7,14 @@ export function getPosts() {
 		type: GET_POSTS
 	};
 }
+
 export const LOADING_POSTS = 'LOADING_POSTS';
 export function loadingPosts() {
 	return {
 		type: LOADING_POSTS
 	};
 }
+
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export function getPostsSuccess(payload) {
 	return {
@@ -20,6 +22,7 @@ export function getPostsSuccess(payload) {
 		payload
 	};
 }
+
 const SUBMIT_POST = 'SUBMIT_POST';
 export function submitPost(post) {
 	return {
@@ -27,8 +30,27 @@ export function submitPost(post) {
 		payload: post
 	};
 }
+const CURRENT_POST = 'CURRENT_POST';
+export function currentPost(payload) {
+	return {
+		type: CURRENT_POST,
+		payload
+	};
+}
 export const getPostTitles = (state) =>
 	map(pipe(prop('author'), prop('title')), state.posts);
+
+export const getCurrentPost = createSelector(
+	(state) => prop('currentPost', state.Posts),
+	(currentPost) => ({ currentPost })
+);
+
+export const postsSelector = createSelector(
+	(state) => prop('posts', state.Posts),
+	(posts) => {
+		return posts;
+	}
+);
 
 function initialState() {
 	return {
@@ -36,15 +58,12 @@ function initialState() {
 	};
 }
 
-export const postsSelector = createSelector(
-	(state) => prop('posts', state.Posts),
-	(posts) => {
-		console.log('selector', posts);
-		return posts;
-	}
-);
-
-function reducer(state = initialState(), action) {
+function initialState() {
+	return {
+		posts: []
+	};
+}
+export default function reducer(state = initialState(), action) {
 	switch (action.type) {
 		case SUBMIT_POST: {
 			return state;
@@ -58,8 +77,13 @@ function reducer(state = initialState(), action) {
 				posts: state.posts.concat(action.payload)
 			};
 		}
+		case CURRENT_POST: {
+			return {
+				...state,
+				currentPost: action.payload
+			};
+		}
 		default:
 			return state;
 	}
 }
-export default reducer;
