@@ -1,6 +1,7 @@
 import { combineEpics } from 'redux-observable';
-import { postEpic } from 'features/posts/posts.epic';
+import { postsEpic } from 'features/posts/posts.epic';
+import { postEpic } from 'features/post/post.epic';
 
-const rootEpic = combineEpics(postEpic);
+const rootEpic = combineEpics(postsEpic, postEpic);
 
 export default rootEpic;

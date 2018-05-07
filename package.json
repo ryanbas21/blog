@@ -1,7 +1,10 @@
 {
 	"name": "create-next-example-app",
 	"lint-staged": {
-		"*.{js,json,css,md}": ["prettier --write", "git add"]
+		"*.{js,json,css,md}": [
+			"prettier --write",
+			"git add"
+		]
 	},
 	"scripts": {
 		"dev": "nodemon server/index.js",
@@ -14,34 +17,31 @@
 		"test": "npm run test:unit && npm run test:view"
 	},
 	"dependencies": {
+		"@zeit/next-css": "^0.1.5",
 		"axios": "^0.18.0",
 		"express": "^4.16.3",
 		"fluture": "^8.0.2",
 		"moment": "^2.21.0",
-		"next": "^5.1.0",
+		"next": "^6.0.0",
 		"next-redux-wrapper": "^1.3.5",
 		"ramda": "^0.25.0",
 		"react": "^16.3.1",
 		"react-dom": "^16.3.1",
 		"react-redux": "^5.0.7",
 		"redux": "^3.7.2",
-		"redux-observable": "^0.18.0",
+		"redux-observable": "1.0.0-alpha.2",
 		"reselect": "^3.0.1",
-		"rxjs": "^5.5.10",
+		"rxjs": "^6.1.0",
 		"semantic-ui-css": "^2.3.1",
 		"semantic-ui-react": "^0.79.1"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.0.0-beta.46",
+		"@babel/preset-react": "^7.0.0-beta.46",
+		"babel-cli": "^6.26.0",
 		"babel-eslint": "^8.2.2",
 		"babel-plugin-module-resolver": "^3.1.1",
 		"babel-plugin-transform-runtime": "^6.23.0",
-		"babel-preset-env": "^1.6.1",
-		"babel-preset-es2015": "^6.24.1",
-		"babel-preset-es2016": "^6.24.1",
-		"babel-preset-es2017": "^6.24.1",
-		"babel-preset-stage-0": "^6.24.1",
-		"babel-preset-stage-2": "^6.24.1",
-		"babel-preset-stage-3": "^6.24.1",
 		"babel-register": "^6.26.0",
 		"body-parser": "^1.18.2",
 		"enzyme": "^3.3.0",

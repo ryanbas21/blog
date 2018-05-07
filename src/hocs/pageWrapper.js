@@ -5,3 +5,4 @@ import Head from './head';
 import store from 'store';
 
 export default compose(withRedux(store), Head);
+export const reduxWrapper = withRedux(store);

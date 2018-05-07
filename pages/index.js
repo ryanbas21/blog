@@ -5,7 +5,7 @@ import Head from 'components/head';
 import { compose } from 'ramda';
 import withRedux from 'next-redux-wrapper';
 import rootEpic from 'src/root-epic';
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 import { getPosts } from 'src/features/posts/posts.reducer';
 
 class PostPage extends React.Component {

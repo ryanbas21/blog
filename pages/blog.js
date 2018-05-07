@@ -1,19 +1,13 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Router from 'next/router';
-import pageWrapper from 'hocs/pageWrapper';
+import { reduxWrapper } from 'hocs/pageWrapper';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import { postsSelector } from 'features/posts/posts.reducer';
-
-const Post = dynamic(import('components/post'), {
-	loading: () => (
-		<Dimmer active>
-			<Loader />
-		</Dimmer>
-	)
-});
+import { of } from 'rxjs';
+import { grabPost, blogSelector } from 'features/post/post.reducer';
+import { Post } from 'features';
+import rootEpic from 'src/root-epic';
 
 class BlogPost extends React.Component {
 	constructor() {
@@ -22,23 +16,13 @@ class BlogPost extends React.Component {
 			postId: null
 		};
 	}
+	static async getInitialProps({ query, params, store }) {
+		const resultAction = await rootEpic(of(grabPost(query)), store).toPromise();
+		store.dispatch(resultAction);
+	}
 	render() {
 		return <Post postId={this.state.postId} />;
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		posts: postsSelector(state)
-	};
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		getPosts: () => dispatch(getPosts())
-	};
-}
-const BlogPostConnected = connect(mapStateToProps, mapDispatchToProps)(
-	BlogPost
-);
-export default pageWrapper(BlogPostConnected);
+export default reduxWrapper(BlogPost);

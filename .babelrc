@@ -1,5 +1,5 @@
 {
-	"plugins": ["transform-runtime",  [
+	"plugins": ["@babel/plugin-transform-runtime",  [
 		"module-resolver", {
 			"root": ["./"],
 			"alias": {
@@ -13,11 +13,6 @@
 		}
 	]],
 	"presets": [
-		"es2015",
-		"next/babel",
-	  "es2016",
-	  "stage-2",
-	  "stage-0",
-	  "react"
+		"next/babel"
 	]
   }

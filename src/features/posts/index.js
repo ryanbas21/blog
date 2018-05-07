@@ -18,13 +18,13 @@ class PostsComponent extends React.Component {
 	};
 	render() {
 		return (
-			<Container textAlign={'center'}>
-				{this.props.posts.map((post) => (
+			<React.Fragment>
+				{this.props.posts.map((post, index, self) => (
 					<div key={post.title} onClick={() => this.handlePost(post)}>
 						<Feed post={post} />
 					</div>
 				))}
-			</Container>
+			</React.Fragment>
 		);
 	}
 }
@@ -34,12 +34,10 @@ function mapStateToProps(state) {
 		posts: postsSelector(state)
 	};
 }
-function mapDispatchToProps(dispatch) {
-	return {
-		getPosts: () => dispatch(getPosts()),
-		currentPost: (post) => dispatch(currentPost(post))
-	};
-}
+const mapDispatchToProps = dispatch => ({
+	getPosts: () => dispatch(getPosts()),
+	currentPost: (post) => dispatch(currentPost(post))
+});
 const Posts = connect(mapStateToProps, mapDispatchToProps)(PostsComponent);
 
 export default Posts;
